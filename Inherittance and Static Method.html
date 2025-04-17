@@ -3,16 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bungee Shade"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Coustard"
+      rel="stylesheet"
+    />
     <title>Document</title>
+
+    <style>
+      body {
+        background: linear-gradient(to right, rgb(67, 67, 67), rgb(0, 0, 0));
+        color: white;
+        padding: 2rem;
+        font-family: "Coustard", serif;
+      }
+
+      * {
+        margin: 10px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        text-align: center;
+        text-shadow: 0px 0px 14px black;
+        font-family: "Bungee Shade";
+        font-weight: bold;
+        color: black;
+        text-shadow: 0px 0px 14px white;
+      }
+
+      .car-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .car-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        width: 250px;
+        transition: transform 0.3s ease;
+      }
+
+      .car-card:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        .car-card {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h2>JavaScript class inheritance & static method</h2>
-
-    <p id="details"></p>
-    <p id="greetings"></p>
+    <h1>Explore Top Car Models</h1>
+    <div class="car-container">
+      <div class="car-card" id="details"></div>
+      <div class="car-card" id="details2"></div>
+      <div class="car-card" id="details3"></div>
+      <div class="car-card" id="details4"></div>
+      <div class="car-card" id="details5"></div>
+    </div>
 
     <script>
-      class vehicle {
+      class Vehicle {
         constructor(brandname) {
           this.brandname = brandname;
         }
@@ -26,21 +88,74 @@
         }
       }
 
-      class model extends vehicle {
-        constructor(brandname, model) {
+      class Model extends Vehicle {
+        constructor(brandname, model, year, color, price, engine) {
           super(brandname);
           this.model = model;
+          this.year = year;
+          this.color = color;
+          this.price = price;
+          this.engine = engine;
         }
 
         show() {
-          return this.details() + "Model : " + this.model;
+          return `
+          Brand: ${this.brandname}<br>
+          Model: ${this.model}<br>
+          Year: ${this.year}<br>
+          Color: ${this.color}<br>
+          Price: ${this.price}<br>
+          Engine: ${this.engine}<br>
+        `;
         }
       }
 
-      var car1 = new model("toyota", "premio");
+      var car1 = new Model(
+        "Toyota",
+        "Supra GR",
+        "2023",
+        "Nitro Yellow",
+        "$45,000",
+        "3.0L Turbo Inline-6"
+      );
+      var car2 = new Model(
+        "Toyota",
+        "Premio",
+        "2021",
+        "Silver",
+        "$25,000",
+        "1.5L Inline-4"
+      );
+      var car3 = new Model(
+        "Honda",
+        "Civic",
+        "2022",
+        "Red",
+        "$30,000",
+        "2.0L Inline-4"
+      );
+      var car4 = new Model(
+        "BMW",
+        "M4 Competition",
+        "2023",
+        "Frozen Portimao Blue",
+        " $79,100",
+        "3.0L Twin-Turbo Inline-6"
+      );
+      var car5 = new Model(
+        "Ferrari",
+        "SF90 Stradale",
+        " 2023",
+        "Rosso Corsa (Red)",
+        "$524,000",
+        " 4.0L V8 Plug-in Hybrid"
+      );
 
       document.getElementById("details").innerHTML = car1.show();
-      document.getElementById("greetings").innerHTML = vehicle.hello();
+      document.getElementById("details2").innerHTML = car2.show();
+      document.getElementById("details3").innerHTML = car3.show();
+      document.getElementById("details4").innerHTML = car4.show();
+      document.getElementById("details5").innerHTML = car5.show();
     </script>
   </body>
 </html>
